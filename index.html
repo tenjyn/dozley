@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Don’t Mind If I Do-zley</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Don’t Mind If I Do-zley</h1>
+
+    <!-- Task Filters -->
+    <div id="filters">
+      <button data-filter="all">All</button>
+      <button data-filter="today">Today</button>
+      <button data-filter="overdue">Overdue</button>
+      <button data-filter="high">High Priority</button>
+    </div>
+
+    <!-- Task Entry Form -->
+    <form id="todo-form">
+      <input type="text" id="new-task" placeholder="New task..." required />
+      <input type="datetime-local" id="due-date" />
+      <select id="priority">
+        <option value="low">Low</option>
+        <option value="medium" selected>Medium</option>
+        <option value="high">High</option>
+      </select>
+      <select id="category-select"></select>
+      <button type="submit">Add</button>
+    </form>
+
+    <!-- Add Category UI -->
+    <div class="category-controls">
+      <button type="button" id="add-category-btn">+ New Category</button>
+    </div>
+    <div id="new-category-form" style="display:none;">
+      <input type="text" id="new-category-name" placeholder="Name" />
+      <input type="color" id="new-category-color" />
+      <input type="text" id="new-category-icon" placeholder="Emoji" maxlength="2" />
+      <button type="button" id="save-category">Save</button>
+    </div>
+
+    <!-- Task Display -->
+    <div id="task-list"></div>
+    <h2>Archived</h2>
+    <div id="archive-list"></div>
+  </div>
+
+  <script src="sortable.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
