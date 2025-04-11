@@ -1,0 +1,116 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f2f2f2;
+  margin: 0;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 700px;
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+form, #new-category-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+input[type="text"], input[type="datetime-local"], select {
+  padding: 0.5rem;
+  flex: 1;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+#filters {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.category-controls {
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.category-section {
+  margin-bottom: 1.5rem;
+}
+
+.category-header {
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.category-tasks.collapsed {
+  display: none;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li.task-item {
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+li.light-text { color: #000; }
+
+.task-meta small {
+  font-size: 0.75rem;
+  color: #f0f0f0;
+}
+
+.task-buttons {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.priority-low    { background-color: #4caf50; }
+.priority-medium { background-color: #ff9800; }
+.priority-high   { background-color: #f44336; }
+
+.subtasks {
+  margin-top: 0.5rem;
+  padding-left: 1rem;
+}
+
+.subtasks li {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 0.25rem;
+  border-radius: 3px;
+  margin-bottom: 0.25rem;
+}
