@@ -66,14 +66,35 @@ function createTaskElement(task, index, isArchive = false) {
   const meta = document.createElement('div');
   meta.className = 'task-meta';
   const icon = customCategories[task.category]?.icon || '';
-  meta.innerHTML = `
-    <strong>${icon} ${task.text}</strong>
-    <small>Category: ${task.category}</small>
-    <small>Priority: ${task.priority}</small>
-    <small>Created: ${formatDate(task.createdAt)}</small>
-    ${task.dueDate ? `<small>Due: ${formatDate(task.dueDate)}</small>` : ''}
-    ${task.completedAt ? `<small>Completed: ${formatDate(task.completedAt)}</small>` : ''}
-  `;
+
+  const strong = document.createElement('strong');
+  strong.textContent = `${icon} ${task.text}`;
+  meta.appendChild(strong);
+
+  const catInfo = document.createElement('small');
+  catInfo.textContent = `Category: ${task.category}`;
+  meta.appendChild(catInfo);
+
+  const priInfo = document.createElement('small');
+  priInfo.textContent = `Priority: ${task.priority}`;
+  meta.appendChild(priInfo);
+
+  const createInfo = document.createElement('small');
+  createInfo.textContent = `Created: ${formatDate(task.createdAt)}`;
+  meta.appendChild(createInfo);
+
+  if (task.dueDate) {
+    const dueInfo = document.createElement('small');
+    dueInfo.textContent = `Due: ${formatDate(task.dueDate)}`;
+    meta.appendChild(dueInfo);
+  }
+
+  if (task.completedAt) {
+    const compInfo = document.createElement('small');
+    compInfo.textContent = `Completed: ${formatDate(task.completedAt)}`;
+    meta.appendChild(compInfo);
+  }
+
   li.appendChild(meta);
 
   if (task.subtasks && task.subtasks.length) {
@@ -81,11 +102,16 @@ function createTaskElement(task, index, isArchive = false) {
     subList.className = 'subtasks';
     task.subtasks.forEach((s, i) => {
       const subItem = document.createElement('li');
-      subItem.innerHTML = `<input type="checkbox" ${s.done ? 'checked' : ''}/> ${s.text}`;
-      subItem.querySelector('input').onchange = () => {
+      const box = document.createElement('input');
+      box.type = 'checkbox';
+      box.checked = s.done;
+      box.onchange = () => {
         s.done = !s.done;
         saveAll();
       };
+      const text = document.createTextNode(` ${s.text}`);
+      subItem.appendChild(box);
+      subItem.appendChild(text);
       subList.appendChild(subItem);
     });
     li.appendChild(subList);
@@ -164,7 +190,6 @@ function renderGroupedTasks(container, taskArray, isArchive = false) {
           return flat.indexOf(`${customCategories[a.category]?.icon || ''} ${a.text}`) -
                  flat.indexOf(`${customCategories[b.category]?.icon || ''} ${b.text}`);
         });
-        let cursor = 0;
         tasks = tasks.filter(t => t.category !== category).concat(reordered.map(t => ({ ...t, done: false })));
         saveAll();
       }
